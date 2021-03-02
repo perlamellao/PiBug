@@ -34,7 +34,6 @@ PiBug está desarrollado en:
 
 - [ElectronJs]
 - [Python] - Todo el tema del backend
-- [markdown-it] - Markdown parser done right. Fast and easy to extend.
 - [node.js] - evented I/O for the backend
 - [jQuery] - duh
 
