@@ -18,10 +18,18 @@
     "bootstrap": "^4.6.0",
     "chart.js": "^2.9.4",
     "crypto": "^1.0.1",
-    "electron": "^11.2.1",
+    "electron": "^11.3.0",
     "fs": "0.0.1-security",
     "jquery": "^3.5.1",
     "popper.js": "^1.14.4",
     "types": "^0.1.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/perlamellao/PiBug.git"
+  },
+  "bugs": {
+    "url": "https://github.com/perlamellao/PiBug/issues"
+  },
+  "homepage": "https://github.com/perlamellao/PiBug#readme"
 }
