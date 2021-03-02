@@ -1,0 +1,27 @@
+{
+  "name": "pibug",
+  "version": "1.0.0",
+  "description": "Una Forma muy facil de hacer una botnet",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "botnet",
+    "desktop",
+    "app"
+  ],
+  "author": "P3rl4dev",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "chart.js": "^2.9.4",
+    "crypto": "^1.0.1",
+    "electron": "^11.2.1",
+    "fs": "0.0.1-security",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.14.4",
+    "types": "^0.1.1"
+  }
+}

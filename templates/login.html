@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/login.css">
+    <meta charset="utf-8">
+    
+  </head>
+  <body style=" padding-top:0;background: linear-gradient(90deg, rgba(35,0,88,1) 0%, rgba(21,2,170,1) 64%, rgba(0,17,255,1) 100%);">
+    
+    <div class="wrapper fadeInDown" id="login-form">
+        <div id="formContent">
+          <div class="fadeIn first">
+            <img src="../styles/img/LOGO.png" id="icon"/>
+          </div>
+          <form name="ipcForm" onsubmit="return logen();">
+            <input type="text" id="login" class="fadeIn second" name="login" placeholder="USUARIO">
+            <input type="password" id="password" class="fadeIn third" name="login" placeholder="CONTRASEÑA">
+            <input type="submit" id="btn-login" class="fadeIn fourth" value="Log In">
+          </form>
+      </div>
+    </div>
+    <div id="loading" class="loading d-none justify-content-around" style="margin-top:30%;">
+      <img src="../styles/img/laoding.gif" width="75px">
+    </div>
+      <script src="../render.js"></script>
+      <script>window.$ = window.jQuery = require('jquery');</script>
+  </body>
+</html>

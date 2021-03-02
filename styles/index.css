@@ -1,0 +1,82 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+ }
+.topnav {
+    background-color: #333340;
+    border-radius: 0px 0px 27px 27px;
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    overflow: hidden;
+    }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    color: #f2f2f2;
+    display: table-cell;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    }
+  
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+    }
+  .topnav a svg{
+    fill: #fff;
+    opacity: 0.5;
+    }
+  
+  /* Add a color to the active/current link */
+  .topnav a.active svg{
+    fill: #00FF00;
+    opacity: 1;
+    }
+
+.inuse {
+  display: block;
+}
+.ninuse {
+  display: none;
+}
+.right {
+  float:right;
+  margin-right: 2% !important;
+}
+.left {
+  float: left;
+  margin-left: 2% !important;
+}
+.container {
+  display: inline-block;
+  background-color: #333340;
+  border-radius: 15px 15px 15px 15px;
+  margin-top: 2%;
+  
+  padding-top: 2%;
+  padding-bottom: 1%;
+  height: 13% !important;
+  width:  43% !important;
+  overflow: hidden;
+}
+
+
+.circleBase {
+  border-radius: 50%;
+}
+
+.type1 {
+  width: 100px;
+  height: 100px;
+  background: #333340;
+  border: 6px solid #AEAEAE;
+  text-align: center;
+  vertical-align: center;
+  line-height: 100px;
+}
