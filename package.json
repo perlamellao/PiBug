@@ -31,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/perlamellao/PiBug/issues"
   },
-  "homepage": "https://github.com/perlamellao/PiBug#readme"
+  "homepage": "https://github.com/perlamellao/PiBug#readme",
+  "devDependencies": {
+    "electron-packager": "^15.2.0"
+  }
 }

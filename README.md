@@ -42,21 +42,14 @@ PiBug está desarrollado en:
 
 PiBug requires [Node.js](https://nodejs.org/) v10+ to run.
 
-Install the dependencies and devDependencies and start the server.
+Build App.
 
 ```sh
 cd PiBug
-npm i
-node app
+npm install electron
+npm install electron-packager
+electron-packager .
 ```
-
-For production environments...
-
-```sh
-npm install --production
-NODE_ENV=production node app
-```
-
 
 
 ## License
