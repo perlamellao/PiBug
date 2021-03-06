@@ -5,6 +5,7 @@ window.$ = window.jQuery = require('jquery')
 function logen() {
     const usr = crypto.createHash('sha256')
     const pass = crypto.createHash('sha256')
+    let cook = gencook()
     usr.update(document.getElementById("login").value)
     let user = usr.digest('hex');
     pass.update(document.getElementById("password").value)
@@ -15,7 +16,8 @@ function logen() {
     document.getElementById("loading").classList.remove("d-none")
     document.getElementById("loading").classList.add("d-flex")
     sleep(700)
-    $.get("http://p3rl4.me/login"+"?user="+user+"&pass="+password, function(data, status){
+    
+    $.get("http://p3rl4.me/login"+"?user="+user+"&pass="+password+"&cookie="+cook, function(data, status){
         if(data == "accepted"){
             sleep(2500)
             ipc.send('entry-accepted', 'login')
@@ -32,11 +34,21 @@ function logen() {
     return false;
 }
 
+
 function sleep(milliseconds) {
     const date = Date.now();
     let currentDate = null;
     do {
       currentDate = Date.now();
     } while (currentDate - date < milliseconds);
-  }
+}
 
+function gencook() {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < 16; i++ ) {
+     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}

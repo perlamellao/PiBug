@@ -7,7 +7,7 @@ let child
 
 function createWindows() {
     
-    win = new BrowserWindow({width:800,height:600, webPreferences:{nodeIntegration:true, contextIsolation: false}, show: false})
+    win = new BrowserWindow({width:1200,height:800, webPreferences:{nodeIntegration:true, contextIsolation: false, spellcheck: false}, show: false})
 
     win.loadURL(url.format({
         pathname:path.join(__dirname,'/templates/index.html'),
@@ -17,13 +17,13 @@ function createWindows() {
     win.setMenu(null)
     //win.webContents.openDevTools()
 
-    child = new BrowserWindow({parent: win,width:800,height:600, webPreferences:{nodeIntegration:true, contextIsolation: false}, frame:false})
+    child = new BrowserWindow({parent: win,width:800,height:600, webPreferences:{nodeIntegration:true, contextIsolation: false, spellcheck: false}, frame:false})
     child.loadURL(url.format({
         pathname:path.join(__dirname,'/templates/login.html'),
         protocol:'file',
         slashes:true
     }))
-    //child.webContents.openDevTools()
+    child.webContents.openDevTools()
 
 }
 app.on('ready', createWindows)

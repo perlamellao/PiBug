@@ -14,7 +14,7 @@ sea donde sea que se conecte con que el ordenador host tenga internet tendras un
 - [ ] Crear el "Main Dashboard"
 - [X] Crear Navegacion principal
 - [ ] Cambiar por completo el antiguo modo de conexión con los PiBug
-- [ ] Crear un selector de PiBugs comandos masivos
+- [ ] Crear un selector de PiBugs 
 
 - See HTML in the right
 - ✨Magic ✨

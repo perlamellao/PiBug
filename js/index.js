@@ -1,4 +1,5 @@
 var Chart = require('chart.js');
+window.$ = window.jQuery = require('jquery')
 var ctx = document.getElementById('PiOnlineW');
 var qwe = new Chart(ctx, {
   type: 'line',
@@ -32,6 +33,26 @@ var qwe = new Chart(ctx, {
         }
     }
 });
+
+function closealert() {
+    $('#cmd-error').hide();
+}
+
+function sendcmd() {
+    cmdform = document.getElementById("massivecmd")
+    command = cmdform.value
+    console.log(command)
+    $('#cmd-error').show();
+}
+
+
+
+session.defaultSession.cookies.set(cookie)
+  .then(() => {
+    // success
+  }, (error) => {
+    console.error(error)
+  })
 
 
 let menuBtn = document.getElementById('menu-btn')
@@ -94,9 +115,3 @@ if (menuBtn){
 }
 
 
-
-
-function updateData(chart, label, data) {
-    Chart.data.datasets[0].bars[2].value = 50
-    chart.update();
-  }
