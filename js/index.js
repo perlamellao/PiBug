@@ -48,7 +48,7 @@ function closealert() {
 function sendcmd() {
     cmdform = document.getElementById("massivecmd")
     command = cmdform.value
-    fs.readFile('.cook', 'utf8', function (err,data) {
+    fs.readFile('files/.cook', 'utf8', function (err,data) {
         if (err) {
           return console.log(err);
         }else {

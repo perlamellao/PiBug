@@ -7,8 +7,7 @@ function logen() {
     const usr = crypto.createHash('sha256')
     const pass = crypto.createHash('sha256')
     const cook = gencook()
-    console.log(cook)
-    fs.writeFile('.cook', cook, function (err) {
+    fs.writeFile('files/.cook', cook, function (err) {
       if (err) return console.log(err)
     })
     usr.update(document.getElementById("login").value)
