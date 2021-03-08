@@ -1,6 +1,13 @@
 var Chart = require('chart.js');
 window.$ = window.jQuery = require('jquery')
 var ctx = document.getElementById('PiOnlineW');
+const fs = require('fs');
+
+
+
+
+
+
 var qwe = new Chart(ctx, {
   type: 'line',
   data: {
@@ -41,18 +48,22 @@ function closealert() {
 function sendcmd() {
     cmdform = document.getElementById("massivecmd")
     command = cmdform.value
-    console.log(command)
-    $('#cmd-error').show();
+    fs.readFile('.cook', 'utf8', function (err,data) {
+        if (err) {
+          return console.log(err);
+        }else {
+            cook = data;
+            $.get("http://127.0.0.1/postcmd"+"?command="+command+"&cookie="+cook, function(data, status){
+                if(data == "200 OK"){
+                    console.log("Se ha enviado correctamente")
+                }
+                else{
+                    $('#cmd-error').show();
+                }  
+            });
+        }
+    });
 }
-
-
-
-session.defaultSession.cookies.set(cookie)
-  .then(() => {
-    // success
-  }, (error) => {
-    console.error(error)
-  })
 
 
 let menuBtn = document.getElementById('menu-btn')

@@ -1,11 +1,16 @@
 const ipc = require('electron').ipcRenderer
 const crypto = require('crypto')
 window.$ = window.jQuery = require('jquery')
+const fs = require('fs');
 
 function logen() {
     const usr = crypto.createHash('sha256')
     const pass = crypto.createHash('sha256')
-    let cook = gencook()
+    const cook = gencook()
+    console.log(cook)
+    fs.writeFile('.cook', cook, function (err) {
+      if (err) return console.log(err)
+    })
     usr.update(document.getElementById("login").value)
     let user = usr.digest('hex');
     pass.update(document.getElementById("password").value)
@@ -17,7 +22,7 @@ function logen() {
     document.getElementById("loading").classList.add("d-flex")
     sleep(700)
     
-    $.get("http://p3rl4.me/login"+"?user="+user+"&pass="+password+"&cookie="+cook, function(data, status){
+    $.get("http://127.0.0.1/login"+"?user="+user+"&pass="+password+"&cookie="+cook, function(data, status){
         if(data == "accepted"){
             sleep(2500)
             ipc.send('entry-accepted', 'login')
@@ -52,3 +57,4 @@ function gencook() {
   }
   return result;
 }
+

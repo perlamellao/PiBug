@@ -2,6 +2,7 @@ const {app, BrowserWindow, ipcMain }=require('electron')
 const path=require('path')
 const url=require('url')
 
+
 let win 
 let child
 
@@ -15,7 +16,7 @@ function createWindows() {
         slashes:true
     }))
     win.setMenu(null)
-    //win.webContents.openDevTools()
+    win.webContents.openDevTools()
 
     child = new BrowserWindow({parent: win,width:800,height:600, webPreferences:{nodeIntegration:true, contextIsolation: false, spellcheck: false}, frame:false})
     child.loadURL(url.format({
