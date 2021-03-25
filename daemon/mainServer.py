@@ -9,8 +9,10 @@ server = Flask(__name__)
 cmdbuffer = "files/buffer.dat"
 connected = "files/connected.xml"
 
-conTree = ET.parse(connected)
-conRoot = conTree.getroot()
+with open(connected, 'rt') as f:
+    tree = ET.parse(f)
+    root = tree.getroot()
+
 
 @server.route('/login', methods=['GET'])
 def index():
@@ -60,6 +62,28 @@ def imonline():
         id_online = request.args.get('id')
         pisonline(id_online)
         return("200 OK")
+
+@server.route('/getcon', methods=['GET'])
+def getcon():
+    total = 0
+    with open(connected, 'rt') as f:
+        tree = ET.parse(f)
+        root = tree.getroot()
+
+    if request.method == 'GET':
+        for bug in root.iter('PiBugs'):
+            for i in range(1,101):
+                rst = bug.find("bug"+str(i))
+                if(rst.get('online') == 'true'):
+                    total += 1
+
+        return str(total)
+    else:
+        return('400')
+
+
+
+#Functions 
 def checkCookie(cookie):
     conn = sqlite3.connect('hashes.db')
     c = conn.cursor()
@@ -92,16 +116,33 @@ def loginApi(userHash, passHash):
     return False
 
 def pisonline(id):
+    with open(connected, 'rt') as f:
+        tree = ET.parse(f)
+        root = tree.getroot()
     if id == None:
         return False
     else:
-        pass
-
+        for bug in root.iter('PiBugs'):
+            online = bug.find("bug"+str(id))
+            online.attrib['online'] = 'true'
+        with open(connected, 'wb') as f:
+            tree.write(f)
+    return
     
 def resetOnline():
-    while True:
-        time.sleep(10)
-    pass    
+    
+    while True: 
+        with open(connected, 'rt') as f:
+            tree = ET.parse(f)
+            root = tree.getroot()
+
+        for bug in root.iter('PiBugs'):
+            for i in range(1,101):
+                rst = bug.find("bug"+str(i))
+                rst.attrib['online'] = 'false'
+        with open(connected, 'wb') as f:
+            tree.write(f)
+        time.sleep(10)   
 
 
 if __name__ == '__main__':

@@ -53,6 +53,7 @@ function sendcmd() {
           return console.log(err);
         }else {
             cook = data;
+            cmdform = document.getElementById("massivecmd").innerText = ""
             $.get("http://127.0.0.1/postcmd"+"?command="+command+"&cookie="+cook, function(data, status){
                 if(data == "200 OK"){
                     console.log("Se ha enviado correctamente")
@@ -65,6 +66,29 @@ function sendcmd() {
     });
 }
 
+
+
+var updatePis = window.setInterval(function(){
+    fs.readFile('files/.cook', 'utf8', function (err,data) {
+        if (err) {
+          return console.log(err);
+        }else {
+            cook = data;
+            $.get("http://127.0.0.1/getcon"+"?cookie="+cook, function(data, status){
+                if(data){
+                    var picon = document.getElementById('connected').innerHTML = data;
+                }
+                else{
+                    console.log(status)
+                }  
+            });
+        }
+    });
+
+
+}, 15000)
+
+//MAIN MENU
 
 let menuBtn = document.getElementById('menu-btn')
 let piBtn = document.getElementById('pi-btn')

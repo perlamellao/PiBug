@@ -2,12 +2,15 @@ import xml.etree.ElementTree as ET
 
 connected = "files/connected.xml"
 
-conTree = ET.Element('root')
-pibugs = ET.SubElement(conTree, "PiBugs")
-for i in range(1,101):
-    i = ET.SubElement(pibugs, str(i))
-    i.set('online', "false")
+with open(connected, 'rt') as f:
+    tree = ET.parse(f)
+    root = tree.getroot()
 
-losdatos = ET.tostring(conTree)
+
+
+for bug in root.iter('PiBugs'):
+    lel = bug.find("bug12")
+    lel.attrib['online'] = 'true'
+
 with open(connected, 'wb') as f:
-    f.write(losdatos)
+    tree.write(f)
