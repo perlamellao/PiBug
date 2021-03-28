@@ -2,11 +2,16 @@ from sqlite3.dbapi2 import register_adapter
 from flask import Flask, request
 import sqlite3
 import multiprocessing
-
+import time
+import xml.etree.ElementTree as ET
 
 server = Flask(__name__)
 cmdbuffer = "files/buffer.dat"
+connected = "files/connected.xml"
 
+with open(connected, 'rt') as f:
+    tree = ET.parse(f)
+    root = tree.getroot()
 
 
 @server.route('/login', methods=['GET'])
@@ -36,8 +41,6 @@ def postcmd():
                 f.write(commando)
             return("200 OK")
 
-
-
 @server.route('/getcmd', methods=['GET'])
 def getcmd():
     if request.method == 'GET':
@@ -53,10 +56,34 @@ def cmdfinished():
         return("200 OK")
     return("500")
 
+@server.route('/imonline', methods=['GET'])
+def imonline():
+    if request.method == 'GET':
+        id_online = request.args.get('id')
+        pisonline(id_online)
+        return("200 OK")
+
+@server.route('/getcon', methods=['GET'])
+def getcon():
+    total = 0
+    with open(connected, 'rt') as f:
+        tree = ET.parse(f)
+        root = tree.getroot()
+
+    if request.method == 'GET':
+        for bug in root.iter('PiBugs'):
+            for i in range(1,101):
+                rst = bug.find("bug"+str(i))
+                if(rst.get('online') == 'true'):
+                    total += 1
+
+        return str(total)
+    else:
+        return('400')
 
 
 
-
+#Functions 
 def checkCookie(cookie):
     conn = sqlite3.connect('hashes.db')
     c = conn.cursor()
@@ -66,7 +93,6 @@ def checkCookie(cookie):
         return False
     else:
         return True
-
 
 def setCookie(userHash, cookie):
     conn = sqlite3.connect('hashes.db')
@@ -89,10 +115,43 @@ def loginApi(userHash, passHash):
                 return False
     return False
 
+def pisonline(id):
+    with open(connected, 'rt') as f:
+        tree = ET.parse(f)
+        root = tree.getroot()
+    if id == None:
+        return False
+    else:
+        for bug in root.iter('PiBugs'):
+            online = bug.find("bug"+str(id))
+            online.attrib['online'] = 'true'
+        with open(connected, 'wb') as f:
+            tree.write(f)
+    return
+    
+def resetOnline():
+    
+    while True: 
+        with open(connected, 'rt') as f:
+            tree = ET.parse(f)
+            root = tree.getroot()
 
+        for bug in root.iter('PiBugs'):
+            for i in range(1,101):
+                rst = bug.find("bug"+str(i))
+                rst.attrib['online'] = 'false'
+        with open(connected, 'wb') as f:
+            tree.write(f)
+        time.sleep(10)   
 
 
 if __name__ == '__main__':
-    #p1 = multiprocessing.Process(name='p1', target=cmdexec)
-    #p1.start()
-    server.run(host='0.0.0.0', port=80)
+    onlinepis = multiprocessing.Process(name='p1', target=resetOnline)
+    
+    try:
+        onlinepis.start()
+        server.run(host='0.0.0.0', port=80)
+    except KeyboardInterrupt:
+        print("TERMINANDO DAEMON")
+    except Exception:
+        print("Ha ocurrido un Error")
