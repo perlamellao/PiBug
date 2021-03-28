@@ -16,7 +16,7 @@ function createWindows() {
         slashes:true
     }))
     win.setMenu(null)
-    win.webContents.openDevTools()
+    //win.webContents.openDevTools()
 
     child = new BrowserWindow({parent: win,width:800,height:600, webPreferences:{nodeIntegration:true, contextIsolation: false, spellcheck: false}, frame:false})
     child.loadURL(url.format({
@@ -24,7 +24,7 @@ function createWindows() {
         protocol:'file',
         slashes:true
     }))
-    child.webContents.openDevTools()
+    //child.webContents.openDevTools()
 
 }
 app.on('ready', createWindows)

