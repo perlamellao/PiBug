@@ -3,7 +3,7 @@ window.$ = window.jQuery = require('jquery')
 var ctx = document.getElementById('PiOnlineW');
 const fs = require('fs');
 
-
+const server = "http://127.0.0.1:80"
 
 
 
@@ -53,17 +53,13 @@ function sendcmd() {
           return console.log(err);
         }else {
             cook = data;
-<<<<<<< HEAD
-            $.get("http://p3rl4.me/postcmd"+"?command="+command+"&cookie="+cook, function(data, status){
-=======
-            cmdform = document.getElementById("massivecmd").innerText = ""
-            $.get("http://127.0.0.1/postcmd"+"?command="+command+"&cookie="+cook, function(data, status){
->>>>>>> 6e0d15939b7318d79d8c635d91a6ccc9e16553f1
+            $.get(server + "/postcmd"+"?command="+command+"&cookie="+cook, function(data, status){
                 if(data == "200 OK"){
                     console.log("Se ha enviado correctamente")
                     $('#massivecmd').val('');
                 }
                 else{
+            
                     $('#cmd-error').show();
                 }  
             });
@@ -79,7 +75,7 @@ var updatePis = window.setInterval(function(){
           return console.log(err);
         }else {
             cook = data;
-            $.get("http://127.0.0.1/getcon"+"?cookie="+cook, function(data, status){
+            $.get(server+"/getcon"+"?cookie="+cook, function(data, status){
                 if(data){
                     var picon = document.getElementById('connected').innerHTML = data;
                 }

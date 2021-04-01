@@ -2,6 +2,8 @@ const ipc = require('electron').ipcRenderer
 const crypto = require('crypto')
 window.$ = window.jQuery = require('jquery')
 const fs = require('fs');
+const server = "http://127.0.0.1:4432"
+
 
 function logen() {
     const usr = crypto.createHash('sha256')
@@ -21,7 +23,7 @@ function logen() {
     document.getElementById("loading").classList.add("d-flex")
     sleep(700)
     
-    $.get("http://p3rl4.me/login"+"?user="+user+"&pass="+password+"&cookie="+cook, function(data, status){
+    $.get(server + "/login"+"?user="+user+"&pass="+password+"&cookie="+cook, function(data, status){
         if(data == "accepted"){
             sleep(2500)
             ipc.send('entry-accepted', 'login')

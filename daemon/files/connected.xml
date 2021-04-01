@@ -1,6 +1,6 @@
 <root>
     <PiBugs>
-        <bug1 online="true" />
+        <bug1 online="false" />
         <bug2 online="false" />
         <bug3 online="false" />
         <bug4 online="false" />

