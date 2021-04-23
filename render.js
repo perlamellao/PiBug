@@ -3,8 +3,12 @@ const crypto = require('crypto')
 window.$ = window.jQuery = require('jquery')
 const fs = require('fs');
 const server = "http://127.0.0.1:4432"
-
-
+function init() {
+  fs.writeFile('files/.cook', "NoCook", function (err) {
+    if (err) return console.log(err)
+  })
+}
+init()
 function logen() {
     const usr = crypto.createHash('sha256')
     const pass = crypto.createHash('sha256')

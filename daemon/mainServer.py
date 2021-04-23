@@ -71,6 +71,8 @@ def getcon():
         root = tree.getroot()
 
     if request.method == 'GET':
+        if request.args.get('cookie') == "NoCook":
+            return("403 Forbidden")
         for bug in root.iter('PiBugs'):
             for i in range(1,101):
                 rst = bug.find("bug"+str(i))

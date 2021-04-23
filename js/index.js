@@ -3,7 +3,7 @@ window.$ = window.jQuery = require('jquery')
 var ctx = document.getElementById('PiOnlineW');
 const fs = require('fs');
 
-const server = "http://127.0.0.1:80"
+const server = "http://127.0.0.1:4432"
 
 
 
