@@ -3,7 +3,8 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
- }
+    background: rgb(35,0,88);
+    background: linear-gradient(126deg, rgba(35,0,88,1) 0%, rgba(21,2,170,1) 64%, rgba(0,17,255,1) 100%); }
 .topnav {
     background-color: #333340;
     border-radius: 0px 0px 27px 27px;
@@ -51,6 +52,10 @@ html, body {
 }
 .left {
   float: left;
+  margin-left: 2% !important;
+}
+.middle {
+  float: center;
   margin-left: 2% !important;
 }
 .bottom {

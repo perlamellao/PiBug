@@ -9,6 +9,10 @@ function init() {
   })
 }
 init()
+
+
+
+
 function logen() {
     const usr = crypto.createHash('sha256')
     const pass = crypto.createHash('sha256')
@@ -27,20 +31,32 @@ function logen() {
     document.getElementById("loading").classList.add("d-flex")
     sleep(700)
     
-    $.get(server + "/login"+"?user="+user+"&pass="+password+"&cookie="+cook, function(data, status){
+    $.ajax({
+      url:server + "/login"+"?user="+user+"&pass="+password+"&cookie="+cook,
+      success: function(data){
         if(data == "accepted"){
-            sleep(2500)
-            ipc.send('entry-accepted', 'login')
+          sleep(2500)
+          ipc.send('entry-accepted', 'login')
+        }else{
+          sleep(2500)
+          alert("SUS CREDENCIALES NO SON CORRECTAS")
+          document.getElementById("login-form").classList.toggle("d-none")
+          document.getElementById("loading").classList.remove("d-flex")
+          document.getElementById("loading").classList.add("d-none")
+          document.getElementById("password").value="";
         }
-        else{
-            sleep(2500)
-            alert("SUS CREDENCIALES NO SON CORRECTAS")
-            document.getElementById("login-form").classList.toggle("d-none")
-            document.getElementById("loading").classList.remove("d-flex")
-            document.getElementById("loading").classList.add("d-none")
+      },
+      timeout:2000,
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        if (textStatus == 'timeout'){
+          alert("NO SE HA PODIDO ESTABLECER CONEXION CON EL SERVIDOR")
+          document.getElementById("login-form").classList.toggle("d-none")
+          document.getElementById("loading").classList.remove("d-flex")
+          document.getElementById("loading").classList.add("d-none")
+          document.getElementById("password").value=""
         }
-            
-      });
+    }
+    });
     return false;
 }
 
