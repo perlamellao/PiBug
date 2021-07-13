@@ -44,7 +44,6 @@ function logen() {
     return false;
 }
 
-
 function sleep(milliseconds) {
     const date = Date.now();
     let currentDate = null;
