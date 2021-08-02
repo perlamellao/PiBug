@@ -21,7 +21,7 @@ function logen() {
       if (err) return console.log(err)
     })
     usr.update(document.getElementById("login").value)
-    let user = usr.digest('hex');
+    let user = usr.digest('hex')
     pass.update(document.getElementById("password").value)
     let password = pass.digest('hex')
     let x = 0
