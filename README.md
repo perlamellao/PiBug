@@ -5,10 +5,11 @@
 PiBug es un concepto muy simple, coge un par de raspberrypi zero w, ponles un usb hub e instala el daemon de PiBug
 sea donde sea que se conecte con que el ordenador host tenga internet tendras una botnet con solo introducir un usb
 
-PiBug IS a very simple concept, take a pair of raspberrypi zero w, put a usb hub on them and install the PiBug dameon.
-If the host computer has internet, you will have a botnet just by inserting a usb.
-(google: PiBug is a very simple concept, take a couple of raspberrypi zero w, put a usb hub on them and install the PiBug daemon
-wherever you connect with the host computer has internet you will have a botnet just by inserting a usb)
+PiBug is a very simple concept. With a few RaspberryPi Zero W's and USB Hubs for them, you will be easily able to build a botnet.
+You just need to:
+- Install the PiBug Daemon
+- Find a host computer with an internet connection
+- Insert your RaspberryPi USB
 
 ### TodoList
 
@@ -30,7 +31,7 @@ wherever you connect with the host computer has internet you will have a botnet 
 - [ ] Create the "Main Dashboard"
 - [X] Create Main Navigation
 - [ ] Completely change the old connection mode with PiBug
-- [ ] Create a PiBugs selector
+- [ ] Create a PiBug selector
 
 - See HTML in the right
 - ✨Magic ✨
@@ -39,14 +40,13 @@ wherever you connect with the host computer has internet you will have a botnet 
 
 - Conexion directa con multiples PiBugs
 - Muy fácil uso y deploy en situaciones de pentest
-- Estabilidad y material desing
+- Estabilidad y material design
 
 ## English Features
 
-- Direct connection with multiple PiBugs
+- Connect directly with multiple PiBugs
 - Very easy to use and deploy in pentest situations
-- Stability and material desing
-(I don't know what desing means)
+- Stability and material design
 
 
 ## Tech
